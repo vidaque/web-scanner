@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Vulnerability Scan Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        .section { margin-bottom: 30px; }
+        .issue { background: #ffecec; border-left: 4px solid #e00; padding: 10px; margin-bottom: 10px; }
+        .summary { background: #eef; padding: 10px; border-left: 4px solid #00f; }
+        canvas { max-width: 400px; }
+    </style>
+</head>
+<body>
+    <h1>Web Vulnerability Report</h1>
+    <p><strong>Scanned URL:</strong> https://testphp.vulnweb.com</p>
+    <p><strong>Date:</strong> 2025-06-13 11:00:57</p>
+
+    <div class="summary">
+        <h2>Summary</h2>
+        <ul>
+            <li>Security Header Issues: 1</li>
+            <li>SQL Injection Issues: 0</li>
+            <li>XSS Issues: 0</li>
+            <li>Directory Exposures: 0</li>
+        </ul>
+        <canvas id="chart" width="400" height="300"></canvas>
+    </div>
+
+    <div class="section">
+        <h2>Vulnerabilities Found</h2>
+        <div class="issue">[Headers] Error checking headers: HTTPSConnectionPool(host='testphp.vulnweb.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f7aa9d07cb0>, 'Connection to testphp.vulnweb.com timed out. (connect timeout=10)'))</div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Headers', 'SQLi', 'XSS', 'Dirs'],
+                datasets: [{
+                    label: 'Issues Found',
+                    data: [1, 0, 0, 0],
+                    backgroundColor: ['#f88', '#fa0', '#fd0', '#aaf']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
